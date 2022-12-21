@@ -120,5 +120,5 @@ return res.status(500).json({error :errorMessage})
 )
 // app.post('/verifyEmail' , async(req,res)=>{
 app.post('/forgot')
-const POST = process.env.POST||4000
-app.listen(POST,()=> console.log(`Sever running in `+POST))
+const PORT = process.env.PORT||4000
+app.listen(PORT,()=> console.log(`Sever running in `+PORT))
