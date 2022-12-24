@@ -51,6 +51,28 @@ const http = require("http").createServer(app);
 //     return res.status(500).send(error)
 //    }
 //   });
+// app.post('/forget', async(req,res)=>{
+//   if(!req.body.email||!req.body.password){
+//     return res.status(422).message({
+//       email: "email is required",
+//       password:"password is required"
+//     })
+//   }
+// })
+app.get('/ban/:id',async(req,res)=>{
+  let UserId = req.params.id
+  await db.child(UserId).update({
+    'availability':-101
+  })
+  res.redirect('/userall')
+})
+app.get('/unban/:id',async(req,res)=>{
+  let UserId = req.params.id
+  await db.child(UserId).update({
+    'availability':0
+  })
+  res.redirect('/userall')
+})
 app.get('/userall', async(req,res)=>{
   db.get().then((snapshot) => {
     if (snapshot.exists()) {
