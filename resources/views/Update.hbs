@@ -15,7 +15,7 @@
 
                 <form action="/update/{{userID}}?_method=PUT" method="post">
                     <fieldset class="form-group">
-                        <input class="form-control form-control-lg" type="text" value="{{data.age}}" name="age" placeholder="age" autofocus>
+                        <input class="form-control form-control-lg" type="number" value="{{data.age}}" name="age" placeholder="age" autofocus>
                     </fieldset>
                     <fieldset class="form-group">
                         <input class="form-control form-control-lg" type="text" value="{{data.education}}" name="education" placeholder="education">
@@ -31,9 +31,6 @@
                     </fieldset>
                     <fieldset class="form-group">
                         <input class="form-control form-control-lg" type="text" value="{{data.phone}}" name="phone" placeholder="phone">
-                    </fieldset>
-                    <fieldset class="form-group">
-                        <input class="form-control form-control-lg" type="text" value="{{data.availability}}" name="availability" placeholder="availability">
                     </fieldset>
                     <button type="submit" class="btn btn-lg btn-primary pull-xs-right">
                         Update
