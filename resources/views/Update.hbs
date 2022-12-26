@@ -1,0 +1,47 @@
+
+<div class="auth-page">
+    <div class="container page">
+        <div class="row">
+
+            <div class="col-md-6 offset-md-3 col-xs-12">
+                <h1 class="text-xs-center">Update</h1>
+                {{!-- <p class="text-xs-center">
+                    <a href="">Have an account?</a>
+                </p> --}}
+
+                {{!-- <ul class="error-messages">
+                    <li>That email is already taken</li>
+                </ul> --}}
+
+                <form action="/update/{{userID}}?_method=PUT" method="post">
+                    <fieldset class="form-group">
+                        <input class="form-control form-control-lg" type="text" value="{{data.age}}" name="age" placeholder="age" autofocus>
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <input class="form-control form-control-lg" type="text" value="{{data.education}}" name="education" placeholder="education">
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <input class="form-control form-control-lg" type="text" value="{{data.email}}" name="email" placeholder="Email">
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <input class="form-control form-control-lg" type="password" value="{{data.password}}" name="password" placeholder="Password">
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <input class="form-control form-control-lg" type="text" value="{{data.name}}" name="name" placeholder="name">
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <input class="form-control form-control-lg" type="text" value="{{data.phone}}" name="phone" placeholder="phone">
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <input class="form-control form-control-lg" type="text" value="{{data.availability}}" name="availability" placeholder="availability">
+                    </fieldset>
+                    <button type="submit" class="btn btn-lg btn-primary pull-xs-right">
+                        Update
+                    </button>
+            
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

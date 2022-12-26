@@ -1,6 +1,7 @@
 const express = require("express");
 // const cors = require("cors");
 const firebase = require('firebase')
+const methodOverride = require('method-override')
 const handlebars = require('express-handlebars')
 const path = require('path')
 const app = express();
@@ -9,6 +10,7 @@ app.use(express.json());
 app.use(express.urlencoded({
   extended : true
 }));
+app.use(methodOverride('_method'))
 app.engine('hbs', handlebars.engine({
   extname:'.hbs'
 }))
@@ -59,11 +61,53 @@ const http = require("http").createServer(app);
 //     })
 //   }
 // })
+app.get('/update/:id',async(req,res)=>{
+  let userID = req.params.id
+  await db.child(userID).get().then((snapshot) => {
+    if (snapshot.exists()) {
+      // res.send(snapshot.val());
+      const data = snapshot.val();
+      res.render('Update',{ data ,userID})
+    } else {
+      console.log("No data available");
+    }
+  }).catch((error) => {
+    console.error(error);
+  });
+  
+})
+app.put('/update/:id',async(req,res)=>{
+  let userID = req.params.id
+  let data = req.body
+  await db.child(userID).update(data, function(err){
+    if (err) {
+
+      res.send(err);
+      
+      } else {
+        db.get().then((snapshot) => {
+          if (snapshot.exists()) {
+            // res.send(snapshot.val());
+            const data = snapshot.val();
+            res.render('userall',{ data})
+          } else {
+            console.log("No data available");
+          }
+        }).catch((error) => {
+          console.error(error);
+        });
+      }
+      
+      });
+      
+      });
+
 app.get('/ban/:id',async(req,res)=>{
   let UserId = req.params.id
   await db.child(UserId).update({
     'availability':-101
   })
+  
   res.redirect('/userall')
 })
 app.get('/unban/:id',async(req,res)=>{
