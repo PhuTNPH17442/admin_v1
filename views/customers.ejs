@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dating-Admin</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="navigation">
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="fitness-outline"></ion-icon></span>
+                        <span class="title">ADMIN DATING</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/">
+                        <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
+                        <span class="title">Customers</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- main -->
+    <div class="main">
+        <div class="topbar">
+            <div class="toggle">
+                <ion-icon name="menu-outline"></ion-icon>
+            </div>
+            <!-- search -->
+            <div class="search">
+                <label>
+                    <input type="text" placeholder="search">
+                    <ion-icon name="search-outline"></ion-icon>
+                </label>
+            </div>
+            <!-- userIMG -->
+            <div class="user">
+                <img src="/img/avatar.jpg">
+            </div>
+        </div>
+        <!-- card -->
+        <h1>Users</h1>
+        <form action="/add" method="post">
+            <button type="submit">Add User</button>
+        </form>
+        <div>
+            <% for (let user of users) { %>
+
+                <div class="cardUser">
+                    <img src="<%= user.imageUri%>">
+
+                    <div class="card-body">
+                        <p>Name:<%= user.name %>
+                        </p>
+                        <p class="card-text">
+                        <p>Age:<%= user.age %>
+                        </p>
+                        <p>Phone:<%= user.phone %>
+                        </p>
+                        <p>Email:<%= user.email %>
+                        </p>
+                        </p>
+                    </div>
+                    <div class="btn">
+                        <button  type="submit">
+                            <%= user.isBlocked ? 'Blocked' : 'Unblocked' %>
+                        </button>
+                        <button type="submit">Delete</button>
+                    </div>
+                </div>
+                
+
+                <% } %>
+        </div>
+    </div>
+    <!-- Icon script -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    <!-- Highchart -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="/js/main.js"></script>
+    <script>
+        //menuToggle
+        let toggle = document.querySelector('.toggle');
+        let navigation = document.querySelector('.navigation')
+        let main = document.querySelector('.main')
+
+        toggle.onclick = function () {
+            navigation.classList.toggle('active');
+            main.classList.toggle('active')
+        }
+        // <!-- add hovered -->
+        let list = document.querySelectorAll('.navigation li');
+        function activeLink() {
+            list.forEach((item) =>
+                item.classList.remove('hovered'));
+            this.classList.add('hovered');
+        }
+        list.forEach((item) =>
+            item.addEventListener('mouseover', activeLink));
+    </script>
+
+</body>
+
+</html>
